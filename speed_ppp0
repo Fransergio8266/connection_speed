@@ -1,0 +1,111 @@
+#!/usr/bin/python3
+import os
+
+ppp0rf=open('/sys/class/net/ppp0/statistics/rx_bytes','r')
+ppp0tf=open('/sys/class/net/ppp0/statistics/tx_bytes','r')
+ppp1rf=open('/sys/class/net/ppp1/statistics/rx_bytes','r')
+ppp1tf=open('/sys/class/net/ppp1/statistics/tx_bytes','r')
+ppp2rf=open('/sys/class/net/ppp2/statistics/rx_bytes','r')
+ppp2tf=open('/sys/class/net/ppp2/statistics/tx_bytes','r')
+eth0rf=open('/sys/class/net/eth0/statistics/rx_bytes','r')
+eth0tf=open('/sys/class/net/eth0/statistics/tx_bytes','r')
+
+
+
+ppp0r=int(ppp0rf.read())
+ppp0rf.close()  
+
+ppp0t=int(ppp0tf.read())
+ppp0tf.close() 
+
+ppp1r=int(ppp1rf.read())
+ppp1rf.close()          
+                        
+ppp1t=int(ppp1tf.read())
+ppp1tf.close() 
+
+ppp2r=int(ppp2rf.read())                                  
+ppp2rf.close()                                            
+                                                          
+ppp2t=int(ppp2tf.read())                                  
+ppp2tf.close()     
+
+eth0r=int(eth0rf.read())
+eth0rf.close()          
+                        
+eth0t=int(eth0tf.read())
+eth0tf.close()   
+
+os.system("sleep 4")
+
+ppp0rf=open('/sys/class/net/ppp0/statistics/rx_bytes','r')
+ppp0r=(int(ppp0rf.read())-ppp0r)*2/1023
+
+ppp0fr=open("/home/root/ppp0r","w+")
+ppp0fr.write("%d\n\r" % ppp0r)   
+
+
+ppp0tf=open('/sys/class/net/ppp0/statistics/tx_bytes','r')
+ppp0t=(int(ppp0tf.read())-ppp0t)*2/1023  
+
+ppp0ft=open("/home/root/ppp0t","w+")
+ppp0ft.write("%d\n\r" % ppp0t)     
+
+ppp1rf=open('/sys/class/net/ppp1/statistics/rx_bytes','r')
+ppp1r=(int(ppp1rf.read())-ppp1r)*2/1023                        
+                                                          
+ppp1fr=open("/home/root/ppp1r","w+")                      
+ppp1fr.write("%d\n\r" % ppp1r)                            
+                                                          
+                                                          
+ppp1tf=open('/sys/class/net/ppp1/statistics/tx_bytes','r')
+ppp1t=(int(ppp1tf.read())-ppp1t)*2/1023                        
+                                                          
+ppp1ft=open("/home/root/ppp1t","w+")                      
+ppp1ft.write("%d\n\r" % ppp1t)     
+
+ppp2rf=open('/sys/class/net/ppp2/statistics/rx_bytes','r')
+ppp2r=(int(ppp2rf.read())-ppp2r)*2/1023                        
+                                                          
+ppp2fr=open("/home/root/ppp2r","w+")                      
+ppp2fr.write("%d\n\r" % ppp2r)                            
+                                                          
+                                                          
+ppp2tf=open('/sys/class/net/ppp2/statistics/tx_bytes','r')
+ppp2t=(int(ppp2tf.read())-ppp2t)*2/1023                        
+                                                          
+ppp2ft=open("/home/root/ppp2t","w+")                      
+ppp2ft.write("%d\n\r" % ppp2t)
+
+eth0rf=open('/sys/class/net/eth0/statistics/rx_bytes','r')
+eth0r=(int(eth0rf.read())-eth0r)*2/1023                        
+                                                          
+eth0fr=open("/home/root/eth0r","w+")                      
+eth0fr.write("%d\n\r" % eth0r)                            
+                                                          
+                                                          
+eth0tf=open('/sys/class/net/eth0/statistics/tx_bytes','r')
+eth0t=(int(eth0tf.read())-eth0t)*2/1023                       
+                                                          
+eth0ft=open("/home/root/eth0t","w+")                      
+eth0ft.write("%d\n\r" % eth0t)           
+
+ppp0rf.close()
+ppp0fr.close()
+ppp0ft.close()
+ppp0tf.close()
+
+ppp1rf.close()                                            
+ppp1fr.close()                                            
+ppp1ft.close()                                            
+ppp1tf.close()
+
+ppp2rf.close()                                            
+ppp2fr.close()                                            
+ppp2ft.close()                                            
+ppp2tf.close()
+
+eth0rf.close()                                            
+eth0fr.close()                                            
+eth0ft.close()                                            
+eth0tf.close() 
